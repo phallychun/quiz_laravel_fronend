@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Homework Book</title>
+</head>
+<body>
+    <div id="app">
+        <form class="container p-5">
+            <input  class="form-control p-4 m-2" type="text" placeholder="User_id" v-model='authorid'>
+            <input  class="form-control p-4 m-2" type="text" placeholder="Title" v-model='title'>
+            <textarea  name="" id="text" cols="30" rows="10" class=" form-control w-100 m-2" placeholder="text" v-model='text'></textarea>
+            <input v-if = "editFound" @click="updateBook" type="button" class="btn btn-success  form-control m-2" value="update"></input>
+            <input v-else @click="addBook" type="button" class="btn btn-primary  form-control m-2" value="Create"></input>
+        </form>
+      
+
+        <div class="container">
+            <div class="card" v-for="(book, index) in books" :key="index" >
+                <div class="d-flex ml-auto">
+                    <button class="btn bg-primary btn-sm text-light mr-2" @click ="updateAction(book)">Edit</button>
+                    <button class="btn btn-danger btn-sm"  @click ="deleteBook(book)">Remove</button>
+                </div>
+                <div class="card-title">
+                    <h1>{{book.title}}</h1>
+                </div>
+                <div class="card-body">
+                    <p>{{book.body}} </p>
+                </div>
+                <div class="card-footer">
+                    <p>{{book.created_at}} </p>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+</body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/app.js"></script>
+</html>
